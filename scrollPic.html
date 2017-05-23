@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .intro-content {
+            height: 100%;
+            width: 80%;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+
+        .intro-content ul {
+            overflow: hidden;
+        }
+
+        .intro-content li {
+            position: relative;
+            float: left;
+            width: 330px;
+            height: 480px;
+            margin: 0 12px;
+            font-size: 18px;
+            color: #fff;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="intro-content" id="intro-content">
+        <ul class="p-show">
+            <li>
+                <div class="intro-mask">
+                    <div class="img-border">
+                        <div class="img-container">
+                            <img src="//game.gtimg.cn/images/qq/web201704/img/intro-slide1.jpg" alt="" class="intro-slide">
+                        </div>
+                    </div>
+                    <span class="intro-play-btn" data-vid="x0394ebd6x3" onclick="PTTSendClick('video','introrplay1','游戏介绍1')"></span>
+                </div>
+                <p class="intro-title">
+                    <span class="intro-point point-pink">&middot;</span> 萌值爆表的游戏角色
+                </p>
+                <p class="intro-desc">
+                    <span class="intro-point point-pink">&middot;</span> 角色百变，萌到炸裂！
+                </p>
+            </li>
+            <li>
+                <div class="intro-mask">
+                    <div class="img-border">
+                        <div class="img-container">
+                            <img src="//game.gtimg.cn/images/qq/web201704/img/intro-slide2.jpg" alt="" class="intro-slide">
+                        </div>
+                    </div>
+                    <span class="intro-play-btn" data-vid="u0394u3dd01" onclick="PTTSendClick('video','introrplay1','游戏介绍1')"></span>
+                </div>
+                <p class="intro-title">
+                    <span class="intro-point point-green">&middot;</span> 萌趣满fun的自由装扮
+                </p>
+                <p class="intro-desc">
+                    <span class="intro-point point-pink">&middot;</span> 换装不停，萌趣不止！造型百变，自由搭配，全看你心情！
+                </p>
+            </li>
+            <li>
+                <div class="intro-mask">
+                    <div class="img-border">
+                        <div class="img-container">
+                            <img src="//game.gtimg.cn/images/qq/web201704/img/intro-slide3.jpg" alt="" class="intro-slide">
+                        </div>
+                    </div>
+                    <span class="intro-play-btn" data-vid="f0394vqk7o9" onclick="PTTSendClick('video','introrplay1','游戏介绍1')"></span>
+                </div>
+                <p class="intro-title">
+                    <span class="intro-point point-blue">&middot;</span> 萌样百出的花式操作
+                </p>
+                <p class="intro-desc">
+                    <span class="intro-point point-pink">&middot;</span> 秀出花式操作！冲撞、投掷、射击……姿势摆对，胜利到位！
+                </p>
+            </li>
+            <li>
+                <div class="intro-mask">
+                    <div class="img-border">
+                        <div class="img-container">
+                            <img src="//game.gtimg.cn/images/qq/web201704/img/intro-slide4.jpg" alt="" class="intro-slide">
+                        </div>
+                    </div>
+                    <span class="intro-play-btn" data-vid="i03944k5mch" onclick="PTTSendClick('video','introrplay1','游戏介绍1')"></span>
+                </div>
+                <p class="intro-title">
+                    <span class="intro-point point-green">&middot;</span> 萌化多端的场景模式
+                </p>
+                <p class="intro-desc">
+                    <span class="intro-point point-pink">&middot;</span> 开黑单排，信手拈来！既可组队开黑碾压对手，也可单人入局自由混战！
+                </p>
+            </li>
+        </ul>
+    </div>
+<script src="src/jquery.min.js"></script>
+<script>
+    function ScrollPic( _obj ) {
+        this.container = $('#' + _obj.conId);
+        this.frameWidth = _obj.frameWidth;
+        this.pageWidth = _obj.pageWidth;
+        this.count = this.container.find('li').length;
+        this.pageSize = 3;
+        this.prev = $('#' + _obj.leftId);
+        this.next = $('#' + _obj.rightId);
+        this.currentPage = 3;
+        this.totalPage = this.container.find('li').length;
+        this.init();
+    }
+
+    ScrollPic.prototype = {
+        init: function() {
+            this.container.width( this.frameWidth );
+            this.container.children('ul').width( this.count * this.pageWidth );
+            this.bindEvent();
+            this.container.children('ul').css('transition','all .8s ease');
+        },
+        bindEvent: function() {
+            var self = this;
+
+            self.prev.on('click', function() {
+                if ( self.currentPage == self.pageSize ) {
+                    return false;
+                }
+                self.currentPage--;
+                self.container.children('ul').css('transform',"translateX(" + self.pageWidth * (self.currentPage - self.pageSize) * (-1) + 'px)');
+            });
+            self.next.on('click', function() {
+                if ( self.currentPage == self.totalPage ) {
+                    return false;
+                }
+                self.currentPage++;
+                self.container.children('ul').css('transform',"translateX(" + self.pageWidth * (self.currentPage - self.pageSize) * (-1) + 'px)');
+            })
+        }
+    }
+
+    $(function() {
+        var scroll = new ScrollPic({
+            conId:'intro-content',
+            leftId:'intro-left',
+            rightId:'intro-right',
+            frameWidth:1052,
+            pageWidth:354,
+            position:'left'
+        });
+    })
+</script>
+</body>
+</html>
